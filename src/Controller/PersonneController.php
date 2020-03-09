@@ -4,7 +4,7 @@ use AppBundle\Entity\Personne;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PersonneController extends DefaultController {
+class PersonneController /*extends DefaultController*/ {
 
 	/**
      * @Route("personne/create/{nom_p}/{prenom_p}")
@@ -126,7 +126,7 @@ class PersonneController extends DefaultController {
     }
 
      /**
-     * @Route("personne/select/{prenom_p}")
+     * @Route("personne/select2/{prenom_p}")
      */
     public function selectAction($prenom_p)
     {

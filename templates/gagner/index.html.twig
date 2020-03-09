@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gagner index{% endblock %}
+
+{% block body %}
+    <h1>Gagner index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Annee_prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gagner in gagners %}
+            <tr>
+                <td>{{ gagner.id }}</td>
+                <td>{{ gagner.anneePrix }}</td>
+                <td>
+                    <a href="{{ path('gagner_show', {'id': gagner.id}) }}">show</a>
+                    <a href="{{ path('gagner_edit', {'id': gagner.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('gagner_new') }}">Create new</a>
+{% endblock %}

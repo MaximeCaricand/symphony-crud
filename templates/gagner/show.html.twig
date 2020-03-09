@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gagner{% endblock %}
+
+{% block body %}
+    <h1>Gagner</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gagner.id }}</td>
+            </tr>
+            <tr>
+                <th>Annee_prix</th>
+                <td>{{ gagner.anneePrix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gagner_index') }}">back to list</a>
+
+    <a href="{{ path('gagner_edit', {'id': gagner.id}) }}">edit</a>
+
+    {{ include('gagner/_delete_form.html.twig') }}
+{% endblock %}

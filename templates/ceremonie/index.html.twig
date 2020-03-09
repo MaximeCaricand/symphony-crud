@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ceremonie index{% endblock %}
+
+{% block body %}
+    <h1>Ceremonie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_ceremonie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ceremonie in ceremonies %}
+            <tr>
+                <td>{{ ceremonie.id }}</td>
+                <td>{{ ceremonie.nomCeremonie }}</td>
+                <td>
+                    <a href="{{ path('ceremonie_show', {'id': ceremonie.id}) }}">show</a>
+                    <a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ceremonie_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ceremonie{% endblock %}
+
+{% block body %}
+    <h1>Edit Ceremonie</h1>
+
+    {{ include('ceremonie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ceremonie_index') }}">back to list</a>
+
+    {{ include('ceremonie/_delete_form.html.twig') }}
+{% endblock %}

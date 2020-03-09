@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ceremonie{% endblock %}
+
+{% block body %}
+    <h1>Ceremonie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ceremonie.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_ceremonie</th>
+                <td>{{ ceremonie.nomCeremonie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ceremonie_index') }}">back to list</a>
+
+    <a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">edit</a>
+
+    {{ include('ceremonie/_delete_form.html.twig') }}
+{% endblock %}

@@ -14,7 +14,7 @@ class Prix
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="idprix")
      */
     private $idprix;
 
@@ -25,7 +25,7 @@ class Prix
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ceremonie", inversedBy="prixes")
-     * @ORM\JoinColumn(nullable=false, name="idc")
+     * @ORM\JoinColumn(nullable=false, name="idc", referencedColumnName="idc")
      */
     private $idc;
 

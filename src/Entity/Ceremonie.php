@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Ceremonie
 {
     /**
-     * @ORM\Id()
+     * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(name="idc", type="integer")
      */

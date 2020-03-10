@@ -16,7 +16,7 @@ class Film
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idf;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -24,7 +24,7 @@ class Film
     private $nom_f;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date_sortie;
 
@@ -40,7 +40,7 @@ class Film
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idf;
     }
 
     public function getNomF(): ?string

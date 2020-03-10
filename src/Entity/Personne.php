@@ -16,7 +16,7 @@ class Personne
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idp;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,7 +40,7 @@ class Personne
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idp;
     }
 
     public function getNomP(): ?string

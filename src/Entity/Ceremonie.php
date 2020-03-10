@@ -14,9 +14,9 @@ class Ceremonie
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="idc", type="integer")
      */
-    private $id;
+    private $idc;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,7 +35,7 @@ class Ceremonie
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idc;
     }
 
     public function getNomCeremonie(): ?string

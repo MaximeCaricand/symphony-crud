@@ -16,7 +16,7 @@ class Prix
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idprix;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -25,7 +25,7 @@ class Prix
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ceremonie", inversedBy="prixes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="idc")
      */
     private $idc;
 
@@ -41,7 +41,7 @@ class Prix
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idprix;
     }
 
     public function getCategoriePrix(): ?string

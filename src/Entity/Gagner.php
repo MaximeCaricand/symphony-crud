@@ -14,7 +14,28 @@ class Gagner
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    //private $id;
+
+    /**
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Personne", inversedBy="gagners")
+     * @ORM\JoinColumn(nullable=false, name="idp", referencedColumnName="idp")
+     */
+    private $idp;
+
+    /**
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prix", inversedBy="gagners")
+     * @ORM\JoinColumn(nullable=false, name="idprix", referencedColumnName="idprix")
+     */
+    private $idprix;
+
+    /**
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Film", inversedBy="gagners")
+     * @ORM\JoinColumn(nullable=false, name="idf", referencedColumnName="idf")
+     */
+    private $idf;
 
     /**
      * @ORM\Column(type="integer")
@@ -26,25 +47,25 @@ class Gagner
      * @ORM\ManyToOne(targetEntity="App\Entity\Personne", inversedBy="gagners")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="idp")
      */
-    private $idp;
+    //private $idp;
 
     /**
      * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Film", inversedBy="gagners")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="idf")
      */
-    private $idf;
+    //private $idf;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Prix", inversedBy="gagners")
      * @ORM\JoinColumn(nullable=false, referencedColumnName="idprix")
      */
-    private $idprix;
+    //private $idprix;
 
-    public function getId(): ?int
+    /*public function getId(): ?int
     {
         return $this->id;
-    }
+    }*/
 
     public function getAnneePrix(): ?int
     {

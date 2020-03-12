@@ -49,19 +49,35 @@ class GagnerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="gagner_show", methods={"GET"})
+     * @Route("/{idp}/{idf}/{idprix}",
+     name="gagner_show", methods={"GET"}),
+     requirements={"idp": "\d+"}),
+     requirements={"idf": "\d+"}),
+     requirements={"idprix": "\d+"})
      */
-    public function show(Gagner $gagner): Response
+    public function show(GagnerRepository $gagnerRepository, int $idp, int $idf, int $idprix): Response
     {
+        //$gagnerRepository = $this->getDoctrine()->getManager();
+        $gagner = $gagnerRepository->findBy(
+            array(
+                'idp' => $idp,
+                'idf' => $idf,
+                'idprix' => $idprix
+            )
+        );
         return $this->render('gagner/show.html.twig', [
             'gagner' => $gagner,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="gagner_edit", methods={"GET","POST"})
+     * @Route("/{idp}/{idf}/{idprix}/edit",
+     name="gagner_edit", methods={"GET","POST"}),
+     requirements={"idp": "\d+"}),
+     requirements={"idf": "\d+"}),
+     requirements={"idprix": "\d+"})
      */
-    public function edit(Request $request, Gagner $gagner): Response
+    public function edit(int $idp, int $idf, int $idprix): Response
     {
         $form = $this->createForm(GagnerType::class, $gagner);
         $form->handleRequest($request);

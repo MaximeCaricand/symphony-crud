@@ -16,11 +16,19 @@
         <tbody>
         {% for gagner in gagners %}
             <tr>
-                <td>{{ gagner.id }}</td>
+                <td>{{ gagner.idp.id }} {{ gagner.idf.id }} {{ gagner.idprix.id }}</td>
                 <td>{{ gagner.anneePrix }}</td>
                 <td>
-                    <a href="{{ path('gagner_show', {'id': gagner.id}) }}">show</a>
-                    <a href="{{ path('gagner_edit', {'id': gagner.id}) }}">edit</a>
+                    <a href="{{ path('gagner_show', {
+                        'idp':  (gagner.idp.id),
+                        'idf': (gagner.idf.id),
+                        'idprix': (gagner.idprix.id)
+                    }) }}">show</a>
+                    <a href="{{ path('gagner_edit', {
+                        'idp':  (gagner.idp.id),
+                        'idf': (gagner.idf.id),
+                        'idprix': (gagner.idprix.id)
+                    }) }}">edit</a>
                 </td>
             </tr>
         {% else %}

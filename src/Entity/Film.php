@@ -30,6 +30,13 @@ class Film
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Gagner", mappedBy="idf")
+     * @ORM\JoinTable(name="gagner",
+     	joinColumns={
+			@ORM\JoinColumn(name="idf", referencedColumnName="idf")		
+     	},inverseJoinColumns={
+     *      @ORM\JoinColumn(name="gagners",
+            referencedColumnName="gagners")
+     *   })
      */
     private $gagners;
 

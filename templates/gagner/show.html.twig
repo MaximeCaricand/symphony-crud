@@ -9,18 +9,22 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ gagner.id }}</td>
+                <td>{{ gagner[0].getIdf().getId() }}</td>
             </tr>
             <tr>
                 <th>Annee_prix</th>
-                <td>{{ gagner.anneePrix }}</td>
+                <td>{{ gagner[0].getAnneePrix() }}</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('gagner_index') }}">back to list</a>
 
-    <a href="{{ path('gagner_edit', {'id': gagner.id}) }}">edit</a>
+    <a href="{{ path('gagner_edit', {
+        'idp': gagner[0].getIdp().getId(),
+        'idf': gagner[0].getIdf().getId(),
+        'idprix': gagner[0].getIdprix().getId()
+    }) }}">edit</a>
 
     {{ include('gagner/_delete_form.html.twig') }}
 {% endblock %}

@@ -30,6 +30,12 @@ class Personne
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Gagner", mappedBy="idp")
+     * @ORM\JoinTable(name="gagner",
+     	joinColums={
+			@ORM\JoinColumn(name="idp", referencedColumnName="îdp")		
+     	},inverseJoinColumns={
+     *     @ORM\JoinColumn(name="gagners", referencedColumnName="gagners")
+     *   })
      */
     private $gagners;
 

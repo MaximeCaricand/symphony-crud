@@ -22,20 +22,22 @@ class Gagner
     private $annee_prix;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Personne", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="idp")
      */
     private $idp;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity="App\Entity\Film", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="idf")
      */
     private $idf;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Prix", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="idprix")
      */
     private $idprix;
 

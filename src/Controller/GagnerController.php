@@ -50,10 +50,10 @@ class GagnerController extends AbstractController
 
     /**
      * @Route("/{idp}/{idf}/{idprix}",
-     name="gagner_show", methods={"GET"}),
-     requirements={"idp": "\d+"}),
-     requirements={"idf": "\d+"}),
-     requirements={"idprix": "\d+"})
+     * name="gagner_show", methods={"GET"}),
+     * requirements={"idp": "\d+"}),
+     * requirements={"idf": "\d+"}),
+     * requirements={"idprix": "\d+"})
      */
     public function show(GagnerRepository $gagnerRepository, int $idp, int $idf, int $idprix): Response
     {
@@ -72,10 +72,10 @@ class GagnerController extends AbstractController
 
     /**
      * @Route("/{idp}/{idf}/{idprix}/edit",
-     name="gagner_edit", methods={"GET","POST"}),
-     requirements={"idp": "\d+"}),
-     requirements={"idf": "\d+"}),
-     requirements={"idprix": "\d+"})
+     * name="gagner_edit", methods={"GET","POST"}),
+     * requirements={"idp": "\d+"}),
+     * requirements={"idf": "\d+"}),
+     * requirements={"idprix": "\d+"})
      */
     public function edit(int $idp, int $idf, int $idprix): Response
     {

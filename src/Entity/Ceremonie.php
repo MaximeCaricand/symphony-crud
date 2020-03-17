@@ -25,6 +25,7 @@ class Ceremonie
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Prix", mappedBy="idc")
+     * 
      */
     private $prixes;
 

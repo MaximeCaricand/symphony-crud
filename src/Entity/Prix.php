@@ -32,11 +32,11 @@ class Prix
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Gagner", mappedBy="idprix")
      * @ORM\JoinTable(name="gagner",
-     	joinColumns={
-			@ORM\JoinColumn(name="idprix", referencedColumnName="idprix")		
-     	},inverseJoinColumns={
+     *	joinColumns={
+	 *		@ORM\JoinColumn(name="idprix", referencedColumnName="idprix")		
+     *	},inverseJoinColumns={
      *      @ORM\JoinColumn(name="gagners",
-            referencedColumnName="gagners")
+     *       referencedColumnName="gagners")
      *   })
      */
     private $gagners;

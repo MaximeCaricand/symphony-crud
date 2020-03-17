@@ -18,9 +18,9 @@
         <tbody>
         {% for gagner in gagners %}
             <tr>
-                <td>{{ gagner.idp.id }}</td>
-                <td>{{ gagner.idf.id }}</td>
-                <td>{{ gagner.idprix.id }}</td>
+                <td>{{ gagner.idp }}</td>
+                <td>{{ gagner.idf }}</td>
+                <td>{{ gagner.idprix }}</td>
                 <td>{{ gagner.anneePrix }}</td>
                 <td>
                     <a href="{{ path('gagner_show', {

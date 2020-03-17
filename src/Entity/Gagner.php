@@ -82,10 +82,10 @@ class Gagner
 
         return $this;
     }
-    /*
-    public function getToken() : int
+	/*
+    public function __toString() : string
     {
-        return $this->idp.$this->idf.$this->idprix;
+        return $this->getId().' : '.$this->nom_ceremonie;
     }
-    */
+	*/
 }

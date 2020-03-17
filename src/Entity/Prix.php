@@ -108,6 +108,6 @@ class Prix
 
     public function __toString() : string
     {
-        return $this->getId();
+        return $this->getId().' : '.$this->categorie_prix;
     }
 }

@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Idc</th>
                 <th>Categorie_prix</th>
                 <th>actions</th>
             </tr>
@@ -17,6 +18,7 @@
         {% for prix in prixes %}
             <tr>
                 <td>{{ prix.id }}</td>
+                <th>{{ prix.idc }}</th>
                 <td>{{ prix.categoriePrix }}</td>
                 <td>
                     <a href="{{ path('prix_show', {'id': prix.id}) }}">show</a>

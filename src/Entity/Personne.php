@@ -107,6 +107,6 @@ class Personne
 
     public function __toString() : string
     {
-        return $this->getId();
+        return $this->getId().' : '.$this->prenom_p.' '.strtoupper($this->nom_p);
     }
 }

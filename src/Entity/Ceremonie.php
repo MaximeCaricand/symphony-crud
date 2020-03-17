@@ -80,4 +80,9 @@ class Ceremonie
 
         return $this;
     }
+
+    public function __toString() : string
+    {
+        return $this->getId().' : '.$this->nom_ceremonie;
+    }
 }

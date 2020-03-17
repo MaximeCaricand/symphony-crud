@@ -8,7 +8,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Idp</th>
+                <th>Idf</th>
+                <th>Idprix</th>
                 <th>Annee_prix</th>
                 <th>actions</th>
             </tr>
@@ -16,7 +18,9 @@
         <tbody>
         {% for gagner in gagners %}
             <tr>
-                <td>{{ gagner.idp.id }} {{ gagner.idf.id }} {{ gagner.idprix.id }}</td>
+                <td>{{ gagner.idp.id }}</td>
+                <td>{{ gagner.idf.id }}</td>
+                <td>{{ gagner.idprix.id }}</td>
                 <td>{{ gagner.anneePrix }}</td>
                 <td>
                     <a href="{{ path('gagner_show', {

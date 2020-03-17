@@ -98,9 +98,9 @@ class Prix
         if ($this->gagners->contains($gagner)) {
             $this->gagners->removeElement($gagner);
             // set the owning side to null (unless already changed)
-            if ($gagner->getIdprix() === $this) {
+            /*if ($gagner->getIdprix() === $this) {
                 $gagner->setIdprix(null);
-            }
+            }*/
         }
 
         return $this;

@@ -85,6 +85,11 @@ class PrixController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$prix->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            foreach ($prix->getGagners() as $gagner)
+                if($gagner->getIdprix() == $prix)
+                    $entityManager->remove($gagner);
+
             $entityManager->remove($prix);
             $entityManager->flush();
         }

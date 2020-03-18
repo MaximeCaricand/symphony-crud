@@ -11,13 +11,6 @@ class Gagner
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    //private $id;
-
-    /**
-     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\Personne", inversedBy="gagners")
      * @ORM\JoinColumn(nullable=false, name="idp", referencedColumnName="idp")
      */
@@ -41,31 +34,6 @@ class Gagner
      * @ORM\Column(type="integer")
      */
     private $annee_prix;
-
-    /**
-     * 
-     * @ORM\ManyToOne(targetEntity="App\Entity\Personne", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="idp")
-     */
-    //private $idp;
-
-    /**
-     * 
-     * @ORM\ManyToOne(targetEntity="App\Entity\Film", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="idf")
-     */
-    //private $idf;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Prix", inversedBy="gagners")
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="idprix")
-     */
-    //private $idprix;
-
-    /*public function getId(): ?int
-    {
-        return $this->id;
-    }*/
 
     public function getAnneePrix(): ?int
     {
@@ -114,4 +82,10 @@ class Gagner
 
         return $this;
     }
+	/*
+    public function __toString() : string
+    {
+        return $this->getId().' : '.$this->nom_ceremonie;
+    }
+	*/
 }

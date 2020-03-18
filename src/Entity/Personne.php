@@ -32,7 +32,7 @@ class Personne
      * @ORM\OneToMany(targetEntity="App\Entity\Gagner", mappedBy="idp")
      * @ORM\JoinTable(name="gagner",
      	joinColumns={
-			@ORM\JoinColumn(name="idp", referencedColumnName="idp")		
+			@ORM\JoinColumn(name="idp", referencedColumnName="idp", onDelete="CASCADE")		
      	},inverseJoinColumns={
      *      @ORM\JoinColumn(name="gagners",
             referencedColumnName="gagners")
@@ -103,5 +103,10 @@ class Personne
         }
 
         return $this;
+    }
+
+    public function __toString() : string
+    {
+        return $this->getId().' : '.$this->prenom_p.' '.strtoupper($this->nom_p);
     }
 }

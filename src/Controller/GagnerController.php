@@ -77,9 +77,16 @@ class GagnerController extends AbstractController
      * requirements={"idf": "\d+"}),
      * requirements={"idprix": "\d+"})
      */
-    public function edit(int $idp, int $idf, int $idprix): Response
+    public function edit(Request $request, GagnerRepository $gagnerRepository, int $idp, int $idf, int $idprix): Response
     {
-        $form = $this->createForm(GagnerType::class, $gagner);
+        $gagner = $gagnerRepository->findBy(
+            array(
+                'idp' => $idp,
+                'idf' => $idf,
+                'idprix' => $idprix
+            )
+        );
+        $form = $this->createForm(GagnerType::class, $gagner[0]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -95,13 +102,26 @@ class GagnerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="gagner_delete", methods={"DELETE"})
+     * @Route("/{idp}/{idf}/{idprix}",
+     * name="gagner_delete", methods={"DELETE"}),
+     * requirements={"idp": "\d+"}),
+     * requirements={"idf": "\d+"}),
+     * requirements={"idprix": "\d+"})
      */
-    public function delete(Request $request, Gagner $gagner): Response
+    public function delete(Request $request, GagnerRepository $gagnerRepository, int $idp, int $idf, int $idprix): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$gagner->getId(), $request->request->get('_token'))) {
+        $gagner = $gagnerRepository->findBy(
+            array(
+                'idp' => $idp,
+                'idf' => $idf,
+                'idprix' => $idprix
+            )
+        );
+        if ($this->isCsrfTokenValid(
+            'delete'.$idp*$idf*$idprix,
+        $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($gagner);
+            $entityManager->remove($gagner[0]);
             $entityManager->flush();
         }
 

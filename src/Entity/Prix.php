@@ -32,11 +32,11 @@ class Prix
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Gagner", mappedBy="idprix")
      * @ORM\JoinTable(name="gagner",
-     	joinColumns={
-			@ORM\JoinColumn(name="idprix", referencedColumnName="idprix")		
-     	},inverseJoinColumns={
+     *	joinColumns={
+	 *		@ORM\JoinColumn(name="idprix", referencedColumnName="idprix")		
+     *	},inverseJoinColumns={
      *      @ORM\JoinColumn(name="gagners",
-            referencedColumnName="gagners")
+     *       referencedColumnName="gagners")
      *   })
      */
     private $gagners;
@@ -98,11 +98,16 @@ class Prix
         if ($this->gagners->contains($gagner)) {
             $this->gagners->removeElement($gagner);
             // set the owning side to null (unless already changed)
-            if ($gagner->getIdprix() === $this) {
+            /*if ($gagner->getIdprix() === $this) {
                 $gagner->setIdprix(null);
-            }
+            }*/
         }
 
         return $this;
+    }
+
+    public function __toString() : string
+    {
+        return $this->getId().' : '.$this->categorie_prix;
     }
 }

@@ -25,6 +25,7 @@ class Ceremonie
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Prix", mappedBy="idc")
+     * 
      */
     private $prixes;
 
@@ -79,5 +80,10 @@ class Ceremonie
         }
 
         return $this;
+    }
+
+    public function __toString() : string
+    {
+        return $this->getId().' : '.$this->nom_ceremonie;
     }
 }

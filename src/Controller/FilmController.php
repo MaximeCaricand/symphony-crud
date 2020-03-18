@@ -85,6 +85,11 @@ class FilmController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$film->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            foreach ($film->getGagners() as $gagner)
+                if($gagner->getIdf() == $film)
+                    $entityManager->remove($gagner);
+
             $entityManager->remove($film);
             $entityManager->flush();
         }

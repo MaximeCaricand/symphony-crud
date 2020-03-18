@@ -1,5 +1,13 @@
-<form method="post" action="{{ path('gagner_delete', {'id': gagner.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" action="{{ path('gagner_delete', {
+	'idp': gagner[0].getIdp().getId(),
+	'idf': gagner[0].getIdf().getId(),
+	'idprix': gagner[0].getIdprix().getId(),
+}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gagner.id) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ 
+    	gagner[0].getIdp().getId()*
+    	gagner[0].getIdf().getId()*
+    	gagner[0].getIdprix().getId()
+    ) }}">
     <button class="btn">Delete</button>
 </form>

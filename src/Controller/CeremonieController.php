@@ -85,6 +85,18 @@ class CeremonieController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$ceremonie->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            foreach ($ceremonie->getPrixes() as $prix) {
+                if($prix->getIdc() == $ceremonie) {
+
+                    foreach ($prix->getGagners() as $gagner)
+                        if($gagner->getIdprix() == $prix)
+                            $entityManager->remove($gagner);
+
+                    $entityManager->remove($prix);
+                }
+            }
+
             $entityManager->remove($ceremonie);
             $entityManager->flush();
         }

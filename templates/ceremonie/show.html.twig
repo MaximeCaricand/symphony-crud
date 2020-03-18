@@ -21,6 +21,8 @@
     <a href="{{ path('ceremonie_index') }}">back to list</a>
 
     <a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">edit</a>
-
+    
     {{ include('ceremonie/_delete_form.html.twig') }}
+
+    
 {% endblock %}

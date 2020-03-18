@@ -3,26 +3,27 @@
 {% block title %}Ceremonie{% endblock %}
 
 {% block body %}
-    <h1>Ceremonie</h1>
 
-    <table class="table">
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Ceremonie</h1>
+
+    <table class="table table-striped table-hover border-left border-primary">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ ceremonie.id }}</td>
             </tr>
             <tr>
-                <th>Nom_ceremonie</th>
+                <th class="th-lg">Nom_ceremonie</th>
                 <td>{{ ceremonie.nomCeremonie }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('ceremonie_index') }}">back to list</a>
-
-    <a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">edit</a>
-    
-    {{ include('ceremonie/_delete_form.html.twig') }}
-
-    
+    <table>
+        <tbody>
+            <td><button type="button" class="btn btn-success"><a href="{{ path('ceremonie_index') }}">Retour à la liste</a></button></td>
+            <td><button type="button" class="btn btn-warning"><a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">Editer</a></button></td>
+            <td>{{ include('ceremonie/_delete_form.html.twig') }}</td>
+        </tbody>
+    </table>
 {% endblock %}

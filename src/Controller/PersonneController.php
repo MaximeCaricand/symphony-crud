@@ -48,20 +48,26 @@ class PersonneController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="personne_show", methods={"GET"})
+     * @Route("/{idp}", name="personne_show", methods={"GET"}
+     * ,requirements={"idp": "\d+"})
      */
-    public function show(Personne $personne): Response
+    public function show(PersonneRepository $personneRepository, int $idp): Response
     {
+    	$personne = $personneRepository->find($idp);
+
         return $this->render('personne/show.html.twig', [
             'personne' => $personne,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="personne_edit", methods={"GET","POST"})
+     * @Route("/{idp}/edit", name="personne_edit", methods={"GET","POST"}
+     * ,requirements={"idp": "\d+"})
      */
-    public function edit(Request $request, Personne $personne): Response
+    public function edit(Request $request, PersonneRepository $personneRepository, int $idp): Response
     {
+        $personne = $personneRepository->find($idp);
+        
         $form = $this->createForm(PersonneType::class, $personne);
         $form->handleRequest($request);
 

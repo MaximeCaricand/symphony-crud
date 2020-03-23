@@ -21,8 +21,8 @@
                 <td>{{ personne.nomP }}</td>
                 <td>{{ personne.prenomP }}</td>
                 <td>
-                    <a href="{{ path('personne_show', {'id': personne.id}) }}">show</a>
-                    <a href="{{ path('personne_edit', {'id': personne.id}) }}">edit</a>
+                    <a href="{{ path('personne_show', {'idp': personne.id}) }}">show</a>
+                    <a href="{{ path('personne_edit', {'idp': personne.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

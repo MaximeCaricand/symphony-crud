@@ -24,7 +24,7 @@
 
     <a href="{{ path('personne_index') }}">back to list</a>
 
-    <a href="{{ path('personne_edit', {'id': personne.id}) }}">edit</a>
+    <a href="{{ path('personne_edit', {'idp': personne.id}) }}">edit</a>
 
     {{ include('personne/_delete_form.html.twig') }}
 {% endblock %}

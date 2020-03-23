@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Ceremonie{% endblock %}
+{% block title %}Nouvelle Ceremonie{% endblock %}
 
 {% block body %}
     <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Ceremonie</h1>
-    {{ include('ceremonie/_form.html.twig') }}
+
+    <div class="border border-primary rounded" style="padding: 50px">
+    	{{ include('ceremonie/_form.html.twig') }}
+    </div>
 {% endblock %}

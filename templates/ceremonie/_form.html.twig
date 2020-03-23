@@ -1,13 +1,11 @@
 {{ form_start(form) }}
-	<div class="border border-primary rounded" style="padding: 50px">
 
-		{{ form_label(form.nom_ceremonie) }}
-		{{ form_widget(form.nom_ceremonie) }}
+	{{ form_label(form.nom_ceremonie) }}
+	{{ form_widget(form.nom_ceremonie) }}
 
-		<br/><hr/>
+	<br/><hr/>
 
-		<button class="btn btn-success" style="margin-right: 20px;">{{ button_label|default('Ajouter') }}</button>
-	   	<button type="button" class="btn btn-danger"><a href="{{ path('ceremonie_index') }}">Annuler</a></button>
+	<button class="btn btn-success" style="margin-right: 20px;">{{ button_label|default('Ajouter') }}</button>
+   	<button type="button" class="btn btn-danger"><a href="{{ path('ceremonie_index') }}">Annuler</a></button>
 
-	</div>
 {{ form_end(form) }}

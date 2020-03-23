@@ -49,20 +49,26 @@ class PrixController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="prix_show", methods={"GET"})
+     * @Route("/{idprix}", name="prix_show", methods={"GET"}
+     * ,requirements={"idprix": "\d+"})
      */
-    public function show(Prix $prix): Response
+    public function show(PrixRepository $prixRepository, int $idprix): Response
     {
+        $prix = $prixRepository->find($idprix);
+
         return $this->render('prix/show.html.twig', [
             'prix' => $prix,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="prix_edit", methods={"GET","POST"})
+     * @Route("/{idprix}/edit", name="prix_edit", methods={"GET","POST"}
+     * ,requirements={"idp": "\d+"})
      */
-    public function edit(Request $request, Prix $prix): Response
+    public function edit(Request $request, PrixRepository $prixRepository, int $idprix): Response
     {
+        $prix = $prixRepository->find($idprix);
+
         $form = $this->createForm(PrixType::class, $prix);
         $form->handleRequest($request);
 
@@ -79,11 +85,14 @@ class PrixController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="prix_delete", methods={"DELETE"})
+     * @Route("/{idprix}", name="prix_delete", methods={"DELETE"}
+     * ,requirements={"idp": "\d+"})
      */
-    public function delete(Request $request, Prix $prix): Response
+    public function delete(Request $request, PrixRepository $prixRepository, int $idprix): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$prix->getId(), $request->request->get('_token'))) {
+        $prix = $prixRepository->find($idprix);
+
+        if ($this->isCsrfTokenValid('delete'.$idprix, $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             foreach ($prix->getGagners() as $gagner)

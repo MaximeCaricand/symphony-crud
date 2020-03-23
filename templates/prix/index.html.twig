@@ -21,8 +21,8 @@
                 <th>{{ prix.idc }}</th>
                 <td>{{ prix.categoriePrix }}</td>
                 <td>
-                    <a href="{{ path('prix_show', {'id': prix.id}) }}">show</a>
-                    <a href="{{ path('prix_edit', {'id': prix.id}) }}">edit</a>
+                    <a href="{{ path('prix_show', {'idprix': prix.id}) }}">show</a>
+                    <a href="{{ path('prix_edit', {'idprix': prix.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

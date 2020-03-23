@@ -84,11 +84,14 @@ class PersonneController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="personne_delete", methods={"DELETE"})
+     * @Route("/{idp}", name="personne_delete", methods={"DELETE"}
+     * ,requirements={"idp": "\d+"})
      */
-    public function delete(Request $request, Personne $personne): Response
+    public function delete(Request $request, PersonneRepository $personneRepository, int $idp): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$personne->getId(), $request->request->get('_token'))) {
+    	$personne = $personneRepository->find($idp);
+
+        if ($this->isCsrfTokenValid('delete'.$idp, $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             foreach ($personne->getGagners() as $gagner)

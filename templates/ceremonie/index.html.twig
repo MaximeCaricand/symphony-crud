@@ -20,8 +20,8 @@
                 <td>{{ ceremonie.id }}</td>
                 <td>{{ ceremonie.nomCeremonie }}</td>
                 <td>
-                    <button type="button" class="btn btn-info btn-sm"><a href="{{ path('ceremonie_show', {'id': ceremonie.id}) }}">Afficher</a></button>
-                    <button type="button" class="btn btn-warning btn-sm"><a href="{{ path('ceremonie_edit', {'id': ceremonie.id}) }}">Editer</a></button>
+                    <button type="button" class="btn btn-info btn-sm"><a href="{{ path('ceremonie_show', {'idc': ceremonie.id}) }}">Afficher</a></button>
+                    <button type="button" class="btn btn-warning btn-sm"><a href="{{ path('ceremonie_edit', {'idc': ceremonie.id}) }}">Editer</a></button>
                 </td>
             </tr>
         {% else %}

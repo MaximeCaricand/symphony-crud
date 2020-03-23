@@ -24,7 +24,7 @@
 
     <a href="{{ path('prix_index') }}">back to list</a>
 
-    <a href="{{ path('prix_edit', {'id': prix.id}) }}">edit</a>
+    <a href="{{ path('prix_edit', {'idprix': prix.id}) }}">edit</a>
 
     {{ include('prix/_delete_form.html.twig') }}
 {% endblock %}

@@ -49,20 +49,25 @@ class FilmController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="film_show", methods={"GET"})
+     * @Route("/{idf}", name="film_show", methods={"GET"}
+     * ,requirements={"idf": "\d+"})
      */
-    public function show(Film $film): Response
+    public function show(FilmRepository $filmRepository, int $idf): Response
     {
+        $film = $filmRepository->find($idf);
+
         return $this->render('film/show.html.twig', [
             'film' => $film,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="film_edit", methods={"GET","POST"})
+     * @Route("/{idf}/edit", name="film_edit", methods={"GET","POST"}
+     * ,requirements={"idf": "\d+"})
      */
-    public function edit(Request $request, Film $film): Response
+    public function edit(Request $request,FilmRepository $filmRepository, int $idf): Response
     {
+        $film = $filmRepository->find($idf);
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
 
@@ -79,11 +84,14 @@ class FilmController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="film_delete", methods={"DELETE"})
+     * @Route("/{idf}", name="film_delete", methods={"DELETE"}
+     * ,requirements={"idf": "\d+"})
      */
-    public function delete(Request $request, Film $film): Response
+    public function delete(Request $request, $filmRepository, int $idf): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$film->getId(), $request->request->get('_token'))) {
+        $film = $filmRepository->find($idf);
+
+        if ($this->isCsrfTokenValid('delete'.$idf, $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             foreach ($film->getGagners() as $gagner)

@@ -49,20 +49,26 @@ class CeremonieController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ceremonie_show", methods={"GET"})
+     * @Route("/{idc}", name="ceremonie_show", methods={"GET"}
+     * ,requirements={"idc": "\d+"})
      */
-    public function show(Ceremonie $ceremonie): Response
+    public function show(CeremonieRepository $ceremonieRepository, int $idc): Response
     {
+        $ceremonie = $ceremonieRepository->find($idc);
+
         return $this->render('ceremonie/show.html.twig', [
             'ceremonie' => $ceremonie,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="ceremonie_edit", methods={"GET","POST"})
+     * @Route("/{idc}/edit", name="ceremonie_edit", methods={"GET","POST"}
+     * ,requirements={"idc": "\d+"})
      */
-    public function edit(Request $request, Ceremonie $ceremonie): Response
+    public function edit(Request $request, CeremonieRepository $ceremonieRepository, int $idc): Response
     {
+        $ceremonie = $ceremonieRepository->find($idc);
+        
         $form = $this->createForm(CeremonieType::class, $ceremonie);
         $form->handleRequest($request);
 
@@ -79,11 +85,14 @@ class CeremonieController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ceremonie_delete", methods={"DELETE"})
+     * @Route("/{idc}", name="ceremonie_delete", methods={"DELETE"}
+     * ,requirements={"idc": "\d+"})
      */
-    public function delete(Request $request, Ceremonie $ceremonie): Response
+    public function delete(Request $request, CeremonieRepository $ceremonieRepository, int $idc): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ceremonie->getId(), $request->request->get('_token'))) {
+        $ceremonie = $ceremonieRepository->find($idc);
+        
+        if ($this->isCsrfTokenValid('delete'.$idc, $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             foreach ($ceremonie->getPrixes() as $prix) {

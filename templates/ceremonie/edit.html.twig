@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Ceremonie{% endblock %}
+{% block title %}Modification Ceremonie{% endblock %}
 
 {% block body %}
-    <h1>Edit Ceremonie</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Ceremonie</h1>
 
-    {{ include('ceremonie/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('ceremonie_index') }}">back to list</a>
-
-    {{ include('ceremonie/_delete_form.html.twig') }}
+    <div class="border border-primary rounded" style="padding: 50px">
+	    {{ include('ceremonie/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+	    <div class="border border-primary" style="margin-top: 25px; position: absolute">
+	    	{{ include('ceremonie/_delete_form.html.twig') }}
+	    </div>
+	</div>
 {% endblock %}

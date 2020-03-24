@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * @Route("/ceremonie")
@@ -31,7 +32,9 @@ class CeremonieController extends AbstractController
     public function new(Request $request): Response
     {
         $ceremonie = new Ceremonie();
-        $form = $this->createForm(CeremonieType::class, $ceremonie);
+        $form = $this->createFormBuilder($ceremonie)
+            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,9 +70,13 @@ class CeremonieController extends AbstractController
      */
     public function edit(Request $request, CeremonieRepository $ceremonieRepository, int $idc): Response
     {
-        $ceremonie = $ceremonieRepository->find($idc);
-        
-        $form = $this->createForm(CeremonieType::class, $ceremonie);
+        $ceremonie =$this->getDoctrine()->getRepository(Ceremonie::class)->find($idc);
+        $nom_ceremonie =$ceremonie->getNomCeremonie();
+
+        $form = $this->createFormBuilder($ceremonie)
+            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 22), 'empty_data' => $nom_ceremonie))
+            ->getForm();
+            
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

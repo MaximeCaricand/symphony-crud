@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('ceremonie_delete', {'idc': ceremonie.id}) }}" onsubmit="return confirm('Êtes vous sur de vouloir supprimer cette entrée ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ceremonie.id) }}">
-    <button type="btn" class="btn btn-danger">SUPPRIMER</button>
+    <button type="btn" class="btn btn-danger"><img src="{{ asset('img/delete.png') }}" alt="Bootstrap" class="img-responsive" width="25" height="22"></button>
 </form>

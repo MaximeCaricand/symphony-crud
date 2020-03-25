@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Gagner index</h1>
-
+    {% if app.user %}
     <table class="table">
         <thead>
             <tr>
@@ -28,11 +28,13 @@
                         'idf': (gagner.idf.id),
                         'idprix': (gagner.idprix.id)
                     }) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('gagner_edit', {
                         'idp':  (gagner.idp.id),
                         'idf': (gagner.idf.id),
                         'idprix': (gagner.idprix.id)
                     }) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -44,4 +46,7 @@
     </table>
 
     <a href="{{ path('gagner_new') }}">Create new</a>
+    {% else %}  
+        <p> Connectez-vous pour avoir accès aux tables.
+    {% endif %}
 {% endblock %}

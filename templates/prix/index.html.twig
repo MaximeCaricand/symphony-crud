@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Prix index</h1>
-
+    {% if app.user %}
     <table class="table">
         <thead>
             <tr>
@@ -22,7 +22,9 @@
                 <td>{{ prix.categoriePrix }}</td>
                 <td>
                     <a href="{{ path('prix_show', {'idprix': prix.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('prix_edit', {'idprix': prix.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -34,4 +36,7 @@
     </table>
 
     <a href="{{ path('prix_new') }}">Create new</a>
+    {% else %}  
+        <p> Connectez-vous pour avoir accès aux tables.
+    {% endif %}
 {% endblock %}

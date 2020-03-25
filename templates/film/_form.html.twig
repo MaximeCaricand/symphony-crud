@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <table>
+		<tr>
+			<td>Nom du film</td>
+			<td>{{ form_widget(form.nom_f) }}</td>
+		</tr>
+		<tr>
+			<td>Date de sortie</td>
+			<td>{{ form_widget(form.date_sortie) }}</td>
+		</tr>
+	</table>
+
+	<hr/>
+
+    <button class="btn btn-success" style="margin-right: 20px;">{{ button_label|default('Ajouter') }}</button>
+    <button type="button" class="btn btn-danger"><a href="{{ path('film_index') }}">Annuler</a></button>
+
 {{ form_end(form) }}

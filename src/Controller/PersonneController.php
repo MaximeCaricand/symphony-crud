@@ -32,8 +32,8 @@ class PersonneController extends AbstractController
     {
         $personne = new Personne();
         $form = $this->createFormBuilder($personne)
-            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 22)))
-            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 20)))
+            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 20)))
             ->getForm();
         $form->handleRequest($request);
 
@@ -72,8 +72,8 @@ class PersonneController extends AbstractController
     {
         $personne = $personneRepository->find($idp);
         $form = $this->createFormBuilder($personne)
-            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 22)))
-            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 20), 'empty_data' => $personne->getNomP()))
+            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 20), 'empty_data' => $personne->getPrenomP()))
             ->getForm();
         $form->handleRequest($request);
 

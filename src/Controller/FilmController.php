@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * @Route("/film")
@@ -31,7 +33,12 @@ class FilmController extends AbstractController
     public function new(Request $request): Response
     {
         $film = new Film();
-        $form = $this->createForm(FilmType::class, $film);
+        
+        $form = $this->createFormBuilder($film)
+            ->add('nom_f',TextType::class, array('attr' => array('maxlength' => 30)))
+            ->add('date_sortie',DateType::class, array('years' => range(1990,2030), 'data' => new \DateTime('now')))
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,7 +75,12 @@ class FilmController extends AbstractController
     public function edit(Request $request,FilmRepository $filmRepository, int $idf): Response
     {
         $film = $filmRepository->find($idf);
-        $form = $this->createForm(FilmType::class, $film);
+        
+        $form = $this->createFormBuilder($film)
+            ->add('nom_f',TextType::class, array('attr' => array('maxlength' => 30), 'empty_data' => $film->getNomF()))
+            ->add('date_sortie',DateType::class, array('years' => range(1990,2030), 'data' => $film->getDateSortie()))
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,7 +99,7 @@ class FilmController extends AbstractController
      * @Route("/{idf}", name="film_delete", methods={"DELETE"}
      * ,requirements={"idf": "\d+"})
      */
-    public function delete(Request $request, $filmRepository, int $idf): Response
+    public function delete(Request $request, FilmRepository $filmRepository, int $idf): Response
     {
         $film = $filmRepository->find($idf);
 

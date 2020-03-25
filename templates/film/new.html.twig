@@ -3,9 +3,8 @@
 {% block title %}New Film{% endblock %}
 
 {% block body %}
-    <h1>Create new Film</h1>
-
-    {{ include('film/_form.html.twig') }}
-
-    <a href="{{ path('film_index') }}">back to list</a>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Film</h1>
+    <div class="border border-primary rounded" style="padding: 50px">
+    	{{ include('film/_form.html.twig') }}
+    </div>
 {% endblock %}

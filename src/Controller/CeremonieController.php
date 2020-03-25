@@ -33,7 +33,7 @@ class CeremonieController extends AbstractController
     {
         $ceremonie = new Ceremonie();
         $form = $this->createFormBuilder($ceremonie)
-            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 30)))
             ->getForm();
         $form->handleRequest($request);
 
@@ -71,10 +71,9 @@ class CeremonieController extends AbstractController
     public function edit(Request $request, CeremonieRepository $ceremonieRepository, int $idc): Response
     {
         $ceremonie =$this->getDoctrine()->getRepository(Ceremonie::class)->find($idc);
-        $nom_ceremonie =$ceremonie->getNomCeremonie();
 
         $form = $this->createFormBuilder($ceremonie)
-            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 22), 'empty_data' => $nom_ceremonie))
+            ->add('nom_ceremonie',TextType::class, array('attr' => array('maxlength' => 30), 'empty_data' => $ceremonie->getNomCeremonie()))
             ->getForm();
             
         $form->handleRequest($request);

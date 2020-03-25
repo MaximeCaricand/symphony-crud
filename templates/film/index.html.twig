@@ -4,34 +4,39 @@
 
 {% block body %}
     <h1>Film index</h1>
+    {% if app.user %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom_f</th>
+                    <th>Date_sortie</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for film in films %}
+                <tr>
+                    <td>{{ film.id }}</td>
+                    <td>{{ film.nomF }}</td>
+                    <td>{{ film.dateSortie ? film.dateSortie|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('film_show', {'idf': film.id}) }}">show</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('film_edit', {'idf': film.id}) }}">edit</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom_f</th>
-                <th>Date_sortie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for film in films %}
-            <tr>
-                <td>{{ film.id }}</td>
-                <td>{{ film.nomF }}</td>
-                <td>{{ film.dateSortie ? film.dateSortie|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('film_show', {'idf': film.id}) }}">show</a>
-                    <a href="{{ path('film_edit', {'idf': film.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('film_new') }}">Create new</a>
+        <a href="{{ path('film_new') }}">Create new</a>
+    {% else %}  
+        <p> Connectez-vous pour avoir accès aux tables.
+    {% endif %}
 {% endblock %}

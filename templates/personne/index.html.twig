@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personne index{% endblock %}
+{% block title %}Personne{% endblock %}
 
 {% block body %}
-    <h1>Personne index</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Personne</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-striped table-hover text-center  border-primary">
+        <thead  class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Nom_p</th>
@@ -21,8 +21,8 @@
                 <td>{{ personne.nomP }}</td>
                 <td>{{ personne.prenomP }}</td>
                 <td>
-                    <a href="{{ path('personne_show', {'idp': personne.id}) }}">show</a>
-                    <a href="{{ path('personne_edit', {'idp': personne.id}) }}">edit</a>
+                    <button type="button" class="btn btn-info btn-sm"><a href="{{ path('personne_show', {'idp': personne.id}) }}">Afficher</a></button>
+                    <button type="button" class="btn btn-warning btn-sm"><a href="{{ path('personne_edit', {'idp': personne.id}) }}">Editer</a></button>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('personne_new') }}">Create new</a>
+    <button type="button" class="btn btn-success btn-block"><a href="{{ path('personne_new') }}">Nouvelle entrée</a></button>
 {% endblock %}

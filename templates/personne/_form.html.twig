@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+	
+	<table>
+		<tr>
+			<td>Prénom</td>
+			<td>{{ form_widget(form.prenom_p) }}</td>
+		</tr>
+		<tr>
+			<td>Nom</td>
+			<td>{{ form_widget(form.nom_p) }}</td>
+		</tr>
+	</table>
+	<br/><hr/>
+
+	<button class="btn btn-success" style="margin-right: 20px;">{{ button_label|default('Ajouter') }}</button>
+   	<button type="button" class="btn btn-danger"><a href="{{ path('personne_index') }}">Annuler</a></button>
+
 {{ form_end(form) }}

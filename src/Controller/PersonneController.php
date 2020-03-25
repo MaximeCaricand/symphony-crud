@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * @Route("/personne")
@@ -30,7 +31,10 @@ class PersonneController extends AbstractController
     public function new(Request $request): Response
     {
         $personne = new Personne();
-        $form = $this->createForm(PersonneType::class, $personne);
+        $form = $this->createFormBuilder($personne)
+            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,8 +71,10 @@ class PersonneController extends AbstractController
     public function edit(Request $request, PersonneRepository $personneRepository, int $idp): Response
     {
         $personne = $personneRepository->find($idp);
-        
-        $form = $this->createForm(PersonneType::class, $personne);
+        $form = $this->createFormBuilder($personne)
+            ->add('nom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->add('prenom_p',TextType::class, array('attr' => array('maxlength' => 22)))
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

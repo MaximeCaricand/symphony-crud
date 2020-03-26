@@ -26,11 +26,14 @@
         </tbody>
     </table>
 
+
     <table style="border-collapse: separate; border-spacing: 3px;">
         <tbody>
             <td><button type="button" class="btn btn-success"><a href="{{ path('gagner_index') }}">Retour</a></button></td>
-            <td><button type="button" class="btn btn-warning"><a href="{{ path('gagner_edit', { 'idp': gagner[0].getIdp().getId(), 'idf': gagner[0].getIdf().getId(), 'idprix': gagner[0].getIdprix().getId() }) }}">Editer</a></button></td>
-            <td>{{ include('gagner/_delete_form.html.twig') }}</td>
+            {% if is_granted('ROLE_ADMIN') %}
+                <td><button type="button" class="btn btn-warning"><a href="{{ path('gagner_edit', { 'idp': gagner[0].getIdp().getId(), 'idf': gagner[0].getIdf().getId(), 'idprix': gagner[0].getIdprix().getId() }) }}">Editer</a></button></td>
+                <td>{{ include('gagner/_delete_form.html.twig') }}</td>
+            {% endif %}
         </tbody>
     </table>
 {% endblock %}

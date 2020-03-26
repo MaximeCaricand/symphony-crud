@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Gagner{% endblock %}
+{% block title %}Ajout Gagner{% endblock %}
 
 {% block body %}
-    <h1>Create new Gagner</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Gagner</h1>
 
-    {{ include('gagner/_form.html.twig') }}
-
-    <a href="{{ path('gagner_index') }}">back to list</a>
+    <div class="border border-primary rounded" style="padding: 50px">
+    	{{ include('gagner/_form.html.twig') }}
+    </div>
 {% endblock %}

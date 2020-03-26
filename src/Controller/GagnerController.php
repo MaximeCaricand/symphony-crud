@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Gagner;
+use App\Entity\Personne;
+use App\Entity\Prix;
+use App\Entity\Film;
 use App\Form\GagnerType;
 use App\Repository\GagnerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * @Route("/gagner")
@@ -31,7 +36,14 @@ class GagnerController extends AbstractController
     public function new(Request $request): Response
     {
         $gagner = new Gagner();
-        $form = $this->createForm(GagnerType::class, $gagner);
+
+        $form = $this->createFormBuilder($gagner)
+            ->add('idp',EntityType::class, array('class' => Personne::class))
+            ->add('idf',EntityType::class, array('class' => Film::class, 'choice_label' => 'nom_f'))
+            ->add('idprix',EntityType::class, array('class' => Prix::class, 'choice_label' => 'categorie_prix'))
+            ->add('annee_prix',IntegerType::class)
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +98,13 @@ class GagnerController extends AbstractController
                 'idprix' => $idprix
             )
         );
-        $form = $this->createForm(GagnerType::class, $gagner[0]);
+        $form = $this->createFormBuilder($gagner[0])
+            ->add('idp',EntityType::class, array('class' => Personne::class, 'empty_data' => $gagner[0]->getIdp()))
+            ->add('idf',EntityType::class, array('class' => Film::class, 'choice_label' => 'nom_f', 'empty_data' => $gagner[0]->getIdf()))
+            ->add('idprix',EntityType::class, array('class' => Prix::class, 'choice_label' => 'categorie_prix', 'empty_data' => $gagner[0]->getIdprix()))
+            ->add('annee_prix',IntegerType::class, array('empty_data' => $gagner[0]->getAnneePrix()))
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

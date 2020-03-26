@@ -1,51 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gagner index{% endblock %}
+{% block title %}Gagner{% endblock %}
 
 {% block body %}
-    <h1>Gagner index</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Gagner</h1>
     {% if app.user %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Idp</th>
-                <th>Idf</th>
-                <th>Idprix</th>
-                <th>Annee_prix</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for gagner in gagners %}
-            <tr>
-                <td>{{ gagner.idp }}</td>
-                <td>{{ gagner.idf }}</td>
-                <td>{{ gagner.idprix }}</td>
-                <td>{{ gagner.anneePrix }}</td>
-                <td>
-                    <a href="{{ path('gagner_show', {
-                        'idp':  (gagner.idp.id),
-                        'idf': (gagner.idf.id),
-                        'idprix': (gagner.idprix.id)
-                    }) }}">show</a>
+        <table class="table table-striped table-hover text-center  border-primary">
+            <thead  class="thead-dark">
+                <tr>
+                    <th>Idp</th>
+                    <th>Idf</th>
+                    <th>Idprix</th>
+                    <th>Annee_prix</th>
+                    <th colspan="2">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for gagner in gagners %}
+                <tr>
+                    <td>{{ gagner.idp }}</td>
+                    <td>{{ gagner.idf }}</td>
+                    <td>{{ gagner.idprix }}</td>
+                    <td>{{ gagner.anneePrix }}</td>
+                    <td style= "padding-right: 2px;"><button type="button" class="btn btn-info btn-sm"><a href="{{ path('gagner_show', { 'idp':  (gagner.idp.id), 'idf': (gagner.idf.id), 'idprix': (gagner.idprix.id) }) }}">Afficher</a></button></td>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('gagner_edit', {
-                        'idp':  (gagner.idp.id),
-                        'idf': (gagner.idf.id),
-                        'idprix': (gagner.idprix.id)
-                    }) }}">edit</a>
+                        <td style= "padding-left: 2px;"><button type="button" class="btn btn-warning btn-sm"><a href="{{ path('gagner_edit', { 'idp':  (gagner.idp.id), 'idf': (gagner.idf.id), 'idprix': (gagner.idprix.id) }) }}">Editer</a></button></td>
                     {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('gagner_new') }}">Create new</a>
+         {% if is_granted('ROLE_ADMIN') %}
+            <button type="button" class="btn btn-success btn-block"><a href="{{ path('gagner_new') }}">Nouvelle entrée</a></button>
+        {% endif %}
     {% else %}  
         <p> Connectez-vous pour avoir accès aux tables.
     {% endif %}

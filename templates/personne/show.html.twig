@@ -25,8 +25,12 @@
     <table style="border-collapse: separate; border-spacing: 3px;">
         <tbody>
             <td><button type="button" class="btn btn-success"><a href="{{ path('personne_index') }}">Retour</a></button></td>
+
+            {% if is_granted('ROLE_ADMIN') %}
             <td><button type="button" class="btn btn-warning"><a href="{{ path('personne_edit', {'idp': personne.id}) }}">Editer</a></button></td>
             <td>{{ include('personne/_delete_form.html.twig') }}</td>
+            {% endif %}
+
         </tbody>
     </table>
 {% endblock %}

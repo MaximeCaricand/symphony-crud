@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+	
+	<table>
+		<tr>
+			<td>Catégorie prix</td>
+			<td>{{ form_widget(form.categorie_prix) }}</td>
+		</tr>
+		<tr>
+			<td>Cérémonie</td>
+			<td>{{ form_widget(form.idc) }}</td>
+		</tr>
+	</table>
+	<hr/>
+
+	<button class="btn btn-success" style="margin-right: 20px;">{{ button_label|default('Ajouter') }}</button>
+   	<button type="button" class="btn btn-danger"><a href="{{ path('prix_index') }}">Annuler</a></button>
+
 {{ form_end(form) }}

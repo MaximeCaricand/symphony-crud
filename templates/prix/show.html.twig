@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prix{% endblock %}
+{% block title %}Affichage Prix{% endblock %}
 
 {% block body %}
-    <h1>Prix</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Prix</h1>
 
-    <table class="table">
+    <table class="table table-striped table-hover border-left border-primary">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -22,9 +22,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('prix_index') }}">back to list</a>
-
-    <a href="{{ path('prix_edit', {'idprix': prix.id}) }}">edit</a>
-
-    {{ include('prix/_delete_form.html.twig') }}
+    <table style="border-collapse: separate; border-spacing: 3px;">
+        <tbody>
+            <td><button type="button" class="btn btn-success"><a href="{{ path('prix_index') }}">Retour</a></button></td>
+            <td><button type="button" class="btn btn-warning"><a href="{{ path('prix_edit', {'idprix': prix.id}) }}">Editer</a></button></td>
+            <td>{{ include('prix/_delete_form.html.twig') }}</td>
+        </tbody>
+    </table>
 {% endblock %}

@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Prix;
+use App\Entity\Ceremonie;
 use App\Form\PrixType;
 use App\Repository\PrixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * @Route("/prix")
@@ -21,7 +24,7 @@ class PrixController extends AbstractController
     public function index(PrixRepository $prixRepository): Response
     {
         return $this->render('prix/index.html.twig', [
-            'prixes' => $prixRepository->findAll(),
+            'prixs' => $prixRepository->findAll(),
         ]);
     }
 
@@ -31,7 +34,12 @@ class PrixController extends AbstractController
     public function new(Request $request): Response
     {
         $prix = new Prix();
-        $form = $this->createForm(PrixType::class, $prix);
+        
+        $form = $this->createFormBuilder($prix)
+            ->add('categorie_prix',TextType::class, array('attr' => array('maxlength' => 30)))
+            ->add('idc',EntityType::class, array('class' => Ceremonie::class, 'choice_label' => 'nom_ceremonie'))
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,7 +77,11 @@ class PrixController extends AbstractController
     {
         $prix = $prixRepository->find($idprix);
 
-        $form = $this->createForm(PrixType::class, $prix);
+        $form = $this->createFormBuilder($prix)
+            ->add('categorie_prix',TextType::class, array('attr' => array('maxlength' => 30), 'empty_data' => $prix->getCategoriePrix()))
+            ->add('idc',EntityType::class, array('class' => Ceremonie::class, 'choice_label' => 'nom_ceremonie', 'empty_data' => $prix->getIdc()))
+            ->getForm();
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

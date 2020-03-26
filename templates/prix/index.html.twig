@@ -1,41 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prix index{% endblock %}
+{% block title %}Prix{% endblock %}
 
 {% block body %}
-    <h1>Prix index</h1>
+    <h1 class="mx-auto" style="width: 200px; margin-top: 30px; margin-bottom: 30px;">Prix</h1>
     {% if app.user %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Idc</th>
-                <th>Categorie_prix</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for prix in prixes %}
-            <tr>
-                <td>{{ prix.id }}</td>
-                <th>{{ prix.idc }}</th>
-                <td>{{ prix.categoriePrix }}</td>
-                <td>
-                    <a href="{{ path('prix_show', {'idprix': prix.id}) }}">show</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('prix_edit', {'idprix': prix.id}) }}">edit</a>
-                    {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-striped table-hover text-center  border-primary">
+            <thead  class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Idc</th>
+                    <th>Categorie_prix</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for prix in prixs %}
+                <tr>
+                    <td>{{ prix.id }}</td>
+                    <th>{{ prix.idc }}</th>
+                    <td>{{ prix.categoriePrix }}</td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm"><a href="{{ path('prix_show', {'idprix': prix.id}) }}">Afficher</a></button>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <button type="button" class="btn btn-warning btn-sm"><a href="{{ path('prix_edit', {'idprix': prix.id}) }}">Editer</a></button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('prix_new') }}">Create new</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <button type="button" class="btn btn-success btn-block"><a href="{{ path('prix_new') }}">Nouvelle entrée</a></button>
+        {% endif %}
+
     {% else %}  
         <p> Connectez-vous pour avoir accès aux tables.
     {% endif %}

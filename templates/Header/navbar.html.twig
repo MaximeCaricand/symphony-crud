@@ -25,7 +25,13 @@
         <a class="nav-link" href="{{ path('gagner_index') }}">Gagner</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+
+      {% if app.user %}
+        <a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
+      {% else %}
+      	<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+      {% endif %}
+        
       </li>
     </ul>
   </div>

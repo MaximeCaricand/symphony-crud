@@ -6,11 +6,11 @@
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto" style="margin-top: 10px;">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link"  href="{{ path('accueil') }}">Accueil </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('ceremonie_index') }}">Cérémonie</a>
+        <a class="nav-link" href="{{ path('ceremonie_index') }}">Cérémonies</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ path('personne_index') }}">Personnes</a>
@@ -27,7 +27,7 @@
       <li class="nav-item">
 
       {% if app.user %}
-        <a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
+        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
       {% else %}
       	<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
       {% endif %}

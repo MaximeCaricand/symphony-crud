@@ -41,7 +41,7 @@ class GagnerController extends AbstractController
             ->add('idp',EntityType::class, array('class' => Personne::class))
             ->add('idf',EntityType::class, array('class' => Film::class, 'choice_label' => 'nom_f'))
             ->add('idprix',EntityType::class, array('class' => Prix::class, 'choice_label' => 'categorie_prix'))
-            ->add('annee_prix',IntegerType::class)
+            ->add('annee_prix',IntegerType::class, array('attr' => array('min' => 1980, 'max' => 2030)))
             ->getForm();
 
         $form->handleRequest($request);
@@ -102,7 +102,7 @@ class GagnerController extends AbstractController
             ->add('idp',EntityType::class, array('class' => Personne::class, 'empty_data' => $gagner[0]->getIdp()))
             ->add('idf',EntityType::class, array('class' => Film::class, 'choice_label' => 'nom_f', 'empty_data' => $gagner[0]->getIdf()))
             ->add('idprix',EntityType::class, array('class' => Prix::class, 'choice_label' => 'categorie_prix', 'empty_data' => $gagner[0]->getIdprix()))
-            ->add('annee_prix',IntegerType::class, array('empty_data' => $gagner[0]->getAnneePrix()))
+            ->add('annee_prix',IntegerType::class, array('empty_data' => $gagner[0]->getAnneePrix(), 'attr' => array('min' => 1980, 'max' => 2030)))
             ->getForm();
 
         $form->handleRequest($request);

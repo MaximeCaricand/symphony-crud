@@ -107,6 +107,6 @@ class Film
 
     public function __toString() : string
     {
-        return $this->getId().' : '.$this->nom_f;
+        return $this->nom_f;
     }
 }

@@ -84,6 +84,6 @@ class Ceremonie
 
     public function __toString() : string
     {
-        return $this->getId().' : '.$this->nom_ceremonie;
+        return $this->nom_ceremonie;
     }
 }

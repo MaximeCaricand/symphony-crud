@@ -36,7 +36,7 @@ class FilmController extends AbstractController
         
         $form = $this->createFormBuilder($film)
             ->add('nom_f',TextType::class, array('attr' => array('maxlength' => 30)))
-            ->add('date_sortie',DateType::class, array('years' => range(1990,2030), 'data' => new \DateTime('now')))
+            ->add('date_sortie',DateType::class, array('years' => range(1980,2030), 'data' => new \DateTime('now')))
             ->getForm();
 
         $form->handleRequest($request);
